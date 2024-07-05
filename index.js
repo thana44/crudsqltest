@@ -148,7 +148,7 @@ app.post('/login', async(req, res)=>{
                 if(match){
                    const token =  jwt.sign({email: data[0].email}, 'my-secrect',{expiresIn: '1h'})
                     const hours = new Date(Date.now() + 3600000)
-                   return res.cookie('mytoken', token,{sameSite:'None',secure:true}).json({status: 'login success.'})
+                   return res.cookie('mytoken', token).json({status: 'login success.',tk:token})
                 }
                 return res.json('password is wrong.')
             })
